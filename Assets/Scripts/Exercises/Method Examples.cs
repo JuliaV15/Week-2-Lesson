@@ -21,11 +21,25 @@ public class MethodExamples : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        Vector2 mousepos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+
+        DrawRect(mousepos, Vector2.one, Color.red); // vector2.one is a short term for a vector that is (1, 1)
     }
 
-    float GetMagnitude(Vector2 v)
+    public static float GetMagnitude(Vector2 v)
     {
         return Mathf.Sqrt(Mathf.Pow(v.x, 2) + Mathf.Pow(v.y, 2));
     }
+
+    public static void DrawRect(Vector2 pos, Vector2 size, Color color)
+        {
+        float halfWidth = size.x / 2;
+        float halfHeight = size.y / 2;
+
+        Vector2 topleft = new Vector2(pos.x - halfWidth, pos.y + halfHeight);
+        Vector2 topright = topleft + Vector2.right * size.x; // vector2.right is a short term for a vector that is (1, 0)
+        Vector2 bottomright = new Vector2(pos.x + halfWidth, pos.y + halfHeight);
+
+        }
+
 }

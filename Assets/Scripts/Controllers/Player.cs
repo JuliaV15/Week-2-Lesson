@@ -10,6 +10,15 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (Input.GetKeyDown(KeyCode.B))
+        {
+            SpawnBombAtOffset(new Vector3(0, 1));
+        }
+    }
 
+    private void SpawnBombAtOffset(Vector3 inOffset)
+    {
+        Vector3 spawnPos = transform.position + inOffset;
+        Instantiate(bombPrefab, spawnPos, Quaternion.identity);
     }
 }

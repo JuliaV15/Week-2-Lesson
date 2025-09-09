@@ -24,6 +24,10 @@ public class MethodExamples : MonoBehaviour
         Vector2 mousepos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 
         DrawRect(mousepos, Vector2.one, Color.red); // vector2.one is a short term for a vector that is (1, 1)
+
+        print(Normalize(new Vector2(3, 4)));
+        print(Normalize(new Vector2(-3, 2)));
+        print(Normalize(new Vector2(1.5f, -3.5f)));
     }
 
     public static float GetMagnitude(Vector2 v)
@@ -42,4 +46,11 @@ public class MethodExamples : MonoBehaviour
 
         }
 
+    private Vector2 Normalize(Vector2 v)
+    {
+        float magnitude = GetMagnitude(v);
+
+        Vector2 normalized = new Vector2(v.x / magnitude, v.y / magnitude);
+        return normalized;
+    }
 }

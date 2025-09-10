@@ -6,13 +6,21 @@ public class Player : MonoBehaviour
     public Transform enemyTransform;
     public GameObject bombPrefab;
     public List<Transform> asteroidTransforms;
-    
+    public int inNumberOfBombs;
+    public float inBombSpacing;
     // Update is called once per frame
     void Update()
     {
+
+
         if (Input.GetKeyDown(KeyCode.B))
         {
             SpawnBombAtOffset(new Vector3(0, 1));
+        }
+
+        if (Input.GetKeyDown(KeyCode.T))
+        {
+            SpawnBombTrail(inBombSpacing, inNumberOfBombs);
         }
     }
 
@@ -20,5 +28,19 @@ public class Player : MonoBehaviour
     {
         Vector3 spawnPos = transform.position + inOffset;
         Instantiate(bombPrefab, spawnPos, Quaternion.identity);
+    }
+
+    public void SpawnBombTrail(float inBombSpacing, int inNumberOfBombs)
+    {
+        Vector3 spawnPos = new Vector2(5, 5);
+       // inBombSpacing = spawnPos.sqrMagnitude;
+       Vector2 bombspace = new Vector2(spawnPos.x, spawnPos.y + inBombSpacing);
+
+        for (int i = 0; i < inNumberOfBombs; i++) // i++ means that ot will add by 1 each time, i < inNumberOfBombs means that it //
+                                                  // will keep doing the for loop until it reaches the variable inNumberOfBombs //
+        {
+            Instantiate(bombPrefab, (bombspace), Quaternion.identity);
+        }
+        
     }
 }

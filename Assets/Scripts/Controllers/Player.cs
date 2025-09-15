@@ -8,6 +8,7 @@ public class Player : MonoBehaviour
     public List<Transform> asteroidTransforms;
     public int inNumberOfBombs;
     public float inBombSpacing;
+    public float InDistance;
     // Update is called once per frame
     void Update()
     {
@@ -21,6 +22,11 @@ public class Player : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.T))
         {
             SpawnBombTrail(inBombSpacing, inNumberOfBombs);
+        }
+
+        if (Input.GetKeyDown(KeyCode.Q))
+        {
+            SpawnBombOnRandomCorner(InDistance);
         }
     }
 
@@ -42,5 +48,13 @@ public class Player : MonoBehaviour
             Instantiate(bombPrefab, (bombspace), Quaternion.identity);
         }
         
+    }
+
+    public void SpawnBombOnRandomCorner (float InDistance)
+    {
+        float distance = 4 * InDistance;
+        float distance2 = 6 * InDistance;
+        Vector2 glob = new Vector2(distance, distance2);
+        Instantiate(bombPrefab, glob , Quaternion.identity);
     }
 }

@@ -9,6 +9,7 @@ public class Player : MonoBehaviour
     public int inNumberOfBombs;
     public float inBombSpacing;
     public float InDistance;
+    public float ratio;
     // Update is called once per frame
     void Update()
     {
@@ -56,5 +57,12 @@ public class Player : MonoBehaviour
         float distance2 = 6 * InDistance;
         Vector2 glob = new Vector2(distance, distance2);
         Instantiate(bombPrefab, glob , Quaternion.identity);
+    }
+
+    public void WarpPlayer (Transform target, float ratio)
+    {
+        Vector3 a = transform.position;
+        Vector3 b = enemyTransform.transform.position;
+        Vector3 Lerp(Vector3 a, Vector3 b, float ratio);
     }
 }

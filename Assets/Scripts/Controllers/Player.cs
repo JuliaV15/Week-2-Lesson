@@ -11,6 +11,7 @@ public class Player : MonoBehaviour
     public float InDistance;
     public float ratio;
     public int inMaxRange;
+    public float speed;
     // Update is called once per frame
     void Update()
     {
@@ -40,6 +41,8 @@ public class Player : MonoBehaviour
         {
             DetectAsteroids(inMaxRange, asteroidTransforms);
         }
+
+        PlayerMovement();
     }
 
     private void SpawnBombAtOffset(Vector3 inOffset)
@@ -84,6 +87,29 @@ public class Player : MonoBehaviour
             Vector2 start = transform.position;
            // Vector2 end = inAsteroids.transform.position;
           //  Debug.DrawLine(start, end, Color.white);
+        }
+    }
+
+    public void PlayerMovement ()
+    {
+        if (Input.GetKey(KeyCode.UpArrow))
+        {
+            transform.position += Vector3.up * Time.deltaTime * speed;
+        }
+
+        if (Input.GetKey(KeyCode.DownArrow))
+        {
+            transform.position += Vector3.down * Time.deltaTime * speed;
+        }
+
+        if (Input.GetKey(KeyCode.LeftArrow))
+        {
+            transform.position += Vector3.left * Time.deltaTime * speed;
+        }
+
+        if (Input.GetKey(KeyCode.RightArrow))
+        {
+            transform.position += Vector3.right * Time.deltaTime * speed;
         }
     }
 }

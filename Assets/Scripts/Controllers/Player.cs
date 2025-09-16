@@ -82,8 +82,8 @@ public class Player : MonoBehaviour
         for (int i = 0; i < inMaxRange; i++)
         {
             Vector2 start = transform.position;
-            Vector2 end = inAsteroids.transform.position;
-            Debug.DrawLine(start, end, Color.white);
+           // Vector2 end = inAsteroids.transform.position;
+          //  Debug.DrawLine(start, end, Color.white);
         }
     }
 }

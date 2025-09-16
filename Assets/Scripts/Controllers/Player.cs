@@ -29,6 +29,11 @@ public class Player : MonoBehaviour
         {
             SpawnBombOnRandomCorner(InDistance);
         }
+
+        if (Input.GetKeyDown(KeyCode.W))
+        {
+            WarpPlayer(enemyTransform, ratio);
+        }
     }
 
     private void SpawnBombAtOffset(Vector3 inOffset)
@@ -62,7 +67,7 @@ public class Player : MonoBehaviour
     public void WarpPlayer (Transform target, float ratio)
     {
         Vector3 a = transform.position;
-        Vector3 b = enemyTransform.transform.position;
-        Vector3 Lerp(Vector3 a, Vector3 b, float ratio);
+        Vector3 b = target.transform.position;
+        a = Vector3.Lerp(a, b, ratio); //idk what's wrong with this one, i thought it would work
     }
 }

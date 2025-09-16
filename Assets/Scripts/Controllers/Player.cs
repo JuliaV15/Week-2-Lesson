@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Drawing;
 using UnityEngine;
 
 public class Player : MonoBehaviour
@@ -12,6 +13,8 @@ public class Player : MonoBehaviour
     public float ratio;
     public int inMaxRange;
     public float speed;
+    public float accelerationTime = 3.0f;
+    private Vector3 velocity = Vector3.zero;
     // Update is called once per frame
     void Update()
     {
@@ -92,24 +95,34 @@ public class Player : MonoBehaviour
 
     public void PlayerMovement ()
     {
+        float acceleration = speed / accelerationTime;
+        
         if (Input.GetKey(KeyCode.UpArrow))
         {
-            transform.position += Vector3.up * Time.deltaTime * speed;
+            // transform.position += Vector3.up * Time.deltaTime * speed;
+            velocity += acceleration * Time.deltaTime * Vector3.up;
+           
         }
 
         if (Input.GetKey(KeyCode.DownArrow))
         {
-            transform.position += Vector3.down * Time.deltaTime * speed;
+            // transform.position += acceleration * Vector3.down * Time.deltaTime;
+            // velocity += transform.position * Time.deltaTime;
+            velocity += acceleration * Time.deltaTime * Vector3.down;
+            
         }
 
         if (Input.GetKey(KeyCode.LeftArrow))
         {
-            transform.position += Vector3.left * Time.deltaTime * speed;
+            velocity += acceleration * Time.deltaTime * Vector3.left;
         }
 
         if (Input.GetKey(KeyCode.RightArrow))
         {
-            transform.position += Vector3.right * Time.deltaTime * speed;
+            velocity += acceleration * Time.deltaTime * Vector3.right;
         }
+
+        velocity = Vector3.ClampMagnitude(velocity, speed);
+        transform.position += velocity * Time.deltaTime;
     }
 }

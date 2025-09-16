@@ -10,6 +10,7 @@ public class Player : MonoBehaviour
     public float inBombSpacing;
     public float InDistance;
     public float ratio;
+    public int inMaxRange;
     // Update is called once per frame
     void Update()
     {
@@ -33,6 +34,11 @@ public class Player : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.W))
         {
             WarpPlayer(enemyTransform, ratio);
+        }
+
+        if (Input.GetKeyDown(KeyCode.J))
+        {
+            DetectAsteroids(inMaxRange, asteroidTransforms);
         }
     }
 
@@ -69,5 +75,15 @@ public class Player : MonoBehaviour
         Vector3 a = transform.position;
         Vector3 b = target.transform.position;
         a = Vector3.Lerp(a, b, ratio); //idk what's wrong with this one, i thought it would work
+    }
+
+    public void DetectAsteroids (float inMaxRange, List <Transform> inAsteroids)
+    {
+        for (int i = 0; i < inMaxRange; i++)
+        {
+            Vector2 start = transform.position;
+            Vector2 end = inAsteroids.transform.position;
+            Debug.DrawLine(start, end, Color.white);
+        }
     }
 }

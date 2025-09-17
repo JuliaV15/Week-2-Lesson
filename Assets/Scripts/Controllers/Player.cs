@@ -96,6 +96,7 @@ public class Player : MonoBehaviour
     public void PlayerMovement ()
     {
         float acceleration = speed / accelerationTime;
+        float deaccelerationSpeed = 0;
         
         if (Input.GetKey(KeyCode.UpArrow))
         {
@@ -120,6 +121,27 @@ public class Player : MonoBehaviour
         if (Input.GetKey(KeyCode.RightArrow))
         {
             velocity += acceleration * Time.deltaTime * Vector3.right;
+        }
+
+        // deaccceleration code starts here (i was getting confused)//
+        if (!Input.GetKey(KeyCode.UpArrow)) // ! means not, so in this case I am saying if the key is NOT up then this thing happens
+        {
+            velocity += deaccelerationSpeed * Time.deltaTime * Vector3.down;
+        }
+
+        if (!Input.GetKeyUp(KeyCode.DownArrow))
+        {
+            velocity += deaccelerationSpeed * Time.deltaTime * Vector3.up;
+        }
+
+        if (!Input.GetKeyUp(KeyCode.LeftArrow))
+        {
+            velocity += deaccelerationSpeed * Time.deltaTime * Vector3.right;
+        }
+
+        if (!Input.GetKeyUp(KeyCode.RightArrow))
+        {
+            velocity += deaccelerationSpeed * Time.deltaTime * Vector3.left;
         }
 
         velocity = Vector3.ClampMagnitude(velocity, speed);

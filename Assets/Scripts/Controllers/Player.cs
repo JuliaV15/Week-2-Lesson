@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Drawing;
 using UnityEngine;
 
 public class Player : MonoBehaviour
@@ -17,7 +16,8 @@ public class Player : MonoBehaviour
     private Vector3 velocity = Vector3.zero;
 
     public float radius = 1;
-    public List<float> circlePoints = new();
+    public List<Vector3> circlePoints = new();
+    public int pointNumber = 9;
 
     // Update is called once per frame
     void Update()
@@ -50,7 +50,7 @@ public class Player : MonoBehaviour
         }
 
         PlayerMovement();
-        EnemyRadar();
+       // EnemyRadar(angle);
     }
 
     private void SpawnBombAtOffset(Vector3 inOffset)
@@ -154,8 +154,29 @@ public class Player : MonoBehaviour
         transform.position += velocity * Time.deltaTime;
     }
 
-    public void EnemyRadar()
+    public void EnemyRadar(float angle)
     {
+        for (int i = 0; i < pointNumber; i++)
+        {
+          // Vector3 point = new Vector3()
+            
+           // circlePoints.Add(); // need to add a vector here bcz i changed list type from float to vector3 so using "i" doesnt work anymore in this context
 
+        }
+        
+        Vector3 playerPos = transform.position;
+
+        for (int i = 0;i < circlePoints.Count;i++)
+        {
+            Debug.DrawLine(playerPos + circlePoints[i], playerPos + circlePoints[i + 1], Color.green);
+        }
+
+     //   float radians = angle * Mathf.Deg2Rad;
+      //  return new Vector3(Mathf.Cos(radians), Mathf.Sin(radians)) * radius;
+
+        // Vector3 circlePointTest = new Vector3(Random.Range(-18f, 18f), Random.Range(-18f, 18f));
+        //  Vector3.ClampMagnitude(circlePointTest, radius);
+        // Debug.Log(circlePointTest);
+        //  Debug.DrawLine(playerPos, circlePointTest, Color.green);
     }
 }

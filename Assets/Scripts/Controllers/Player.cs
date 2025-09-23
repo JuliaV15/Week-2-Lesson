@@ -15,6 +15,10 @@ public class Player : MonoBehaviour
     public float speed;
     public float accelerationTime = 3.0f;
     private Vector3 velocity = Vector3.zero;
+
+    public float radius = 1;
+    public List<float> circlePoints = new();
+
     // Update is called once per frame
     void Update()
     {
@@ -46,6 +50,7 @@ public class Player : MonoBehaviour
         }
 
         PlayerMovement();
+        EnemyRadar();
     }
 
     private void SpawnBombAtOffset(Vector3 inOffset)
@@ -147,5 +152,10 @@ public class Player : MonoBehaviour
 
         velocity = Vector3.ClampMagnitude(velocity, speed);
         transform.position += velocity * Time.deltaTime;
+    }
+
+    public void EnemyRadar()
+    {
+
     }
 }

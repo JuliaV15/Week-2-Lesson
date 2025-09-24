@@ -18,6 +18,7 @@ public class Player : MonoBehaviour
     public float radius = 1;
     public List<Vector3> circlePoints = new();
     public int pointNumber = 9;
+    public float angle;
 
     // Update is called once per frame
     void Update()
@@ -50,6 +51,7 @@ public class Player : MonoBehaviour
         }
 
         PlayerMovement();
+        EnemyRadar(angle, radius);
        // EnemyRadar(angle);
     }
 
@@ -154,17 +156,22 @@ public class Player : MonoBehaviour
         transform.position += velocity * Time.deltaTime;
     }
 
-    public void EnemyRadar(float angle)
+    public void EnemyRadar(float angle, float radius)
     {
+        Vector3 playerPos = transform.position;
+
+        float thingangle = 2f * Mathf.PI * angle;
+
         for (int i = 0; i < pointNumber; i++)
         {
-          // Vector3 point = new Vector3()
-            
-           // circlePoints.Add(); // need to add a vector here bcz i changed list type from float to vector3 so using "i" doesnt work anymore in this context
+            // Vector3 point = new Vector3()
 
+            // circlePoints.Add(); // need to add a vector here bcz i changed list type from float to vector3 so using "i" doesnt work anymore in this context
+
+            Vector3 point = new Vector3(Mathf.Cos(thingangle) * radius, Mathf.Sin(thingangle) * radius) + playerPos;
+            circlePoints.Add(point);
         }
         
-        Vector3 playerPos = transform.position;
 
         for (int i = 0;i < circlePoints.Count;i++)
         {

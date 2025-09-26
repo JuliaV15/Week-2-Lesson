@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Rendering.Universal;
 
 public class Player : MonoBehaviour
 {
@@ -15,10 +16,20 @@ public class Player : MonoBehaviour
     public float accelerationTime = 3.0f;
     private Vector3 velocity = Vector3.zero;
 
+    [Header("Journal 4 Task 1")]
+    // journal 4 task 1
     public List<Vector3> circlePoints;
     public float radius = 1;
     public int pointNumber = 9;
     public float angle = 45.0f;
+
+    [Header("Journal 4 Task2")]
+    //journal 4 task 2
+    public List<Vector3> powerUps;
+    public float radius2 = 1;
+    public int numberOfPowerups = 8;
+    public GameObject powerupPrefab;
+   
 
     // Update is called once per frame
     void Update()
@@ -52,7 +63,10 @@ public class Player : MonoBehaviour
 
         PlayerMovement();
         EnemyRadar(angle, radius);
-       // EnemyRadar(angle);
+        // EnemyRadar(angle);
+
+       SpawnPowerups(radius2, numberOfPowerups);
+
     }
 
     private void SpawnBombAtOffset(Vector3 inOffset)
@@ -158,9 +172,10 @@ public class Player : MonoBehaviour
 
     public void EnemyRadar(float angle, float radius)
     {
-        circlePoints = new();
+       circlePoints = new();
 
-        Vector3 playerPos = transform.position;
+
+    Vector3 playerPos = transform.position;
 
         float radians = angle * Mathf.Deg2Rad;
 
@@ -192,8 +207,35 @@ public class Player : MonoBehaviour
         //  Debug.DrawLine(playerPos, circlePointTest, Color.green);
     }
 
-    public void SpawnPowerups (float radius, int numberOfPowerups)
+    public void SpawnPowerups (float radius2, int numberOfPowerups)
     {
+        // List<Vector3> powerUps = new List<Vector3>();
+        powerUps = new();
+        Debug.Log("list made");
+
+        // powerUps = new();
+        float nextAngle = 360f / numberOfPowerups;
+
+        Vector3 shipPos = transform.position;
+
+        float radians2 = nextAngle * Mathf.Deg2Rad;
+
+       
+
+        for (int i = 0; i < numberOfPowerups; i++)
+        {
+            float adjustments = radians2 * i;
+
+            Vector3 point2 = new Vector3(Mathf.Cos(radians2 + adjustments) * Mathf.Rad2Deg, Mathf.Sin(radians2 + adjustments) * Mathf.Rad2Deg);
+
+            powerUps.Add(point2);
+        }
+
+
+        for (int i2 = 0; i2 < powerUps.Count; i2++)
+        {
+            Instantiate(powerupPrefab, shipPos + powerUps[i2], Quaternion.identity);
+        }
 
     }
 }

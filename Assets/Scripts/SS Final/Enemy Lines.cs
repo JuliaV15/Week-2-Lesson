@@ -16,7 +16,11 @@ public class EnemyLines : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        EnemySpawning();
+        if (Input.GetKeyDown(KeyCode.Z))
+        {
+            EnemySpawning();
+        }
+        
     }
 
     public void EnemySpawning ()

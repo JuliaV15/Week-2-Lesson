@@ -9,8 +9,7 @@ public class PowerUps : MonoBehaviour
     public int spawnPointNumber;
     public GameObject powerupPrefab;
 
-    [Header("Power Up Ability - Teleportation")]
-    public List<Vector3> Playertp;
+    
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -26,7 +25,7 @@ public class PowerUps : MonoBehaviour
             PowerUpSpawn(radius, spawnPointNumber);
         }
 
-        PlayerTeleportation();
+        
     }
 
     public void PowerUpSpawn (float radius, int spawnPointNumber)
@@ -54,8 +53,5 @@ public class PowerUps : MonoBehaviour
         }
     }
 
-    public void PlayerTeleportation ()
-    {
-        Playertp = new();
-    }
+    
 }

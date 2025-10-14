@@ -40,7 +40,7 @@ public class PowerUps : MonoBehaviour
         {
             float adjustments = radians * i;
 
-            Vector3 spawnpoint = new Vector3(Mathf.Cos(radians + adjustments) * radius * Mathf.Rad2Deg, Mathf.Sin(radians + adjustments) * radius * Mathf.Rad2Deg);
+            Vector3 spawnpoint = new Vector3(Mathf.Cos(radians + adjustments), Mathf.Sin(radians + adjustments)) * radius;
 
             powerUpSpawnPoint.Add(spawnpoint);
         }

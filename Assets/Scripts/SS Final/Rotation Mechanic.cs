@@ -6,7 +6,6 @@ public class RotationMechanic : MonoBehaviour
     public Transform playerTarget;
     public float speed = 45f;
     public GameObject bulletPrefab;
-    public float bulletSpeed = 5;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -41,12 +40,10 @@ public class RotationMechanic : MonoBehaviour
     public void bullet()
     {
         Vector3 trackerPos = transform.position;
-        Vector3 move = Vector3.up;
-        Vector3 move2 = move.normalized;
-        Vector3 bulletPos = bulletPrefab.transform.position;
+     //   Vector3 move = Vector3.up;
+      //  Vector3 move2 = move.normalized;
+      //  Vector3 bulletPos = bulletPrefab.transform.position;
 
         Instantiate(bulletPrefab, trackerPos, Quaternion.identity);
-
-        bulletPos += move2 * Time.deltaTime * bulletSpeed;
     }
 }

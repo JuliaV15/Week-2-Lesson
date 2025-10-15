@@ -6,6 +6,7 @@ public class EnemyLines : MonoBehaviour
     public List<Vector3> enemyList;
     public float enemyAmount;
     public GameObject enemy;
+    Vector3 enemyPos;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -20,12 +21,13 @@ public class EnemyLines : MonoBehaviour
         {
             EnemySpawning();
         }
-        
+
+        lineDrawing();
     }
 
     public void EnemySpawning ()
     {
-        Vector3 enemyPos = new Vector3 (Random.Range(-18f, 18f), Random.Range(-18f, 18f));
+      enemyPos = new Vector3 (Random.Range(-9f, 9f), Random.Range(-9f, 9f));
 
         for (int i = 0; i < enemyAmount; i++)
         {
@@ -38,8 +40,18 @@ public class EnemyLines : MonoBehaviour
         for (int i = 0; i < enemyList.Count; i++)
         {
             Instantiate(enemy, enemyPos, Quaternion.identity);
-
-            Debug.DrawLine(enemyPos + enemyList[i], enemyPos + enemyList[i + 1], Color.red);
         }
+    }
+
+    public void lineDrawing()
+    {
+      if (enemyList.Count > 0)
+        {
+            for (int i = 0; i < enemyList.Count; i++)
+            {
+                Debug.DrawLine(enemyList[i], enemyList[i + 1], Color.red);
+            }
+        }
+       
     }
 }

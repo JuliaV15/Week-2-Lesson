@@ -37,10 +37,10 @@ public class EnemyLines : MonoBehaviour
         }
         // need to still add enemy movement and screen borders
        
-        //for (int i = 0; i < enemyList.Count; i++)
-       // {
+        for (int i = 0; i < enemyAmount; i++)
+        {
             Instantiate(enemy, enemyPos, Quaternion.identity);
-       // }
+        }
     }
 
     public void lineDrawing()

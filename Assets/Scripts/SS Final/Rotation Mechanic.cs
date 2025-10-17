@@ -44,6 +44,9 @@ public class RotationMechanic : MonoBehaviour
       //  Vector3 move2 = move.normalized;
       //  Vector3 bulletPos = bulletPrefab.transform.position;
 
-        Instantiate(bulletPrefab, trackerPos, Quaternion.identity);
+      //  GameObject bullet = Instantiate(bulletPrefab, trackerPos, Quaternion.identity);
+       // bullet.GetComponent<Part2RotationMech>().tracker = gameObject;
+
+        Instantiate(bulletPrefab, trackerPos, transform.rotation); // transform.rotate sets the rotaion of the prefab to the rotation of the spawner
     }
 }

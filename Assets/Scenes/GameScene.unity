@@ -1403,6 +1403,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 5
   accelerationTime: 3
+  acceleration: 0
+  decelerationTime: 3
+  deceleration: 0
 --- !u!1 &1395548861
 GameObject:
   m_ObjectHideFlags: 0
@@ -1582,7 +1585,6 @@ MonoBehaviour:
   playerTarget: {fileID: 1387347094}
   speed: 45
   bulletPrefab: {fileID: 1761202055222398, guid: 561200a1f15bfaa449ccc4cb56a3a980, type: 3}
-  bulletSpeed: 5
 --- !u!212 &1463322839
 SpriteRenderer:
   m_ObjectHideFlags: 0
